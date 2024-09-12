@@ -1,0 +1,63 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+struct st1{
+	int n;
+	st1 *l;
+};
+
+st1 root;
+
+void f1()
+{
+	int n;
+	printf("add what: ");
+	scanf("%d", &n);
+	printf("\n");
+	st1 *a=root.l, *b=(st1*)malloc(sizeof(st1));
+	b->l=NULL;
+	b->n=n;
+	if(a){
+		while(a->l) a=a->l;
+		a->l=b;
+	}
+	else root.l=b;
+}
+
+void f2()
+{
+	st1 *a=root.l;
+	if(a){
+		while(a->l) a=a->l;
+		a->l=NULL;
+		printf("Deleted\n\n");
+	}
+	else printf("No element to delete\n\n");
+}
+
+void f3()
+{
+	printf("This is list now\n");
+	st1* a=root.l;
+	if(!a) printf("Empty list");
+	while(a){
+		printf("%d ", a->n);
+		a=a->l;
+	}
+	printf("\n\n");
+}
+
+int main()
+{
+	root.l=NULL;
+	int n;
+	while(1){
+		printf("1. add\n2. delete\n3. print\n");
+		scanf("%d", &n);
+		printf("\n");
+		if(n==1) f1();
+		if(n==2) f2();
+		if(n==3) f3();
+		for(n=0; n<10; n++) printf("\n");
+	}
+}
